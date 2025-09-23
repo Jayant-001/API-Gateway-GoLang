@@ -1,0 +1,22 @@
+server:
+  port: ":8080"
+  read_timeout: "15s"
+  write_timeout: "15s"
+
+routes:
+  - name: "service_a"
+    path_prefix: "/service-a"
+    upstream_url: "http://localhost:8081"
+    auth_required: true
+  - name: "service_b"
+    path_prefix: "/service-b"
+    upstream_url: "http://localhost:8082"
+    auth_required: false
+
+rate_limiter:
+  enabled: true
+  requests_per_second: 10
+  burst: 20
+
+auth:
+  api_key: "super-secret-key"
