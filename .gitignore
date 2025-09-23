@@ -1,0 +1,48 @@
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+
+# Output of go build
+/build/
+/bin/
+/out/
+
+# Vendor directory (if not using vendoring, remove this)
+/vendor/
+
+# Go workspace file
+go.work
+go.work.sum
+
+# Go module files (only ignore if you want to manage modules manually)
+# go.mod
+# go.sum
+
+# Editor/IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*.bak
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Logs and debug
+*.log
+*.tmp
+
+# Coverage and testing
+coverage.out
+*.coverprofile
+
+# Dependency directories (may appear in legacy or vendored projects)
+Godeps/
+
+# Static analysis output
+*.staticcheck
