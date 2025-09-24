@@ -34,7 +34,7 @@ type RateLimitConfig struct {
 }
 
 type AuthConfig struct {
-	APIKEY string `yaml:"api_key"`
+	APIKey string `yaml:"api_key"`
 }
 
 func LoadConfig(path string) (*Config, error) {
