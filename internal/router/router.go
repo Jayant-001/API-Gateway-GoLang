@@ -17,7 +17,7 @@ type Router struct {
 func NewRouter(cfg *config.Config) (*Router, error) {
 	r := &Router{
 		cfg:    cfg,
-		router: http.NewServeMux(),
+		router: http.NewServeMux(), // a new HTTP request multiplexer
 	}
 
 	if err := r.updateRoutes(); err != nil {

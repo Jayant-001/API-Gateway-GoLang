@@ -6,7 +6,7 @@ server:
 routes:
   - name: "service_a"
     path_prefix: "/service-a"
-    upstream_url: "http://localhost:8081"
+    upstream_url: "https://jsonplaceholder.typicode.com"
     auth_required: true
   - name: "service_b"
     path_prefix: "/service-b"
