@@ -27,7 +27,14 @@ func NewRouter(cfg *config.Config) (*Router, error) {
 }
 
 func (r *Router) ServeHTTP(w http.ResponseWriter, req *http.Request) {
-	r.router.ServeHTTP(w, req)
+	// r.router.ServeHTTP(w, req)
+
+	// This is where global middleware should be applied
+	var handler http.Handler = r.router
+	if r.cfg.RateLimiter.Enabled {
+		handler = middleware.RateLimit(r.cfg.RateLimiter)(handler)
+	}
+	middleware.Logging(handler).ServeHTTP(w, req)
 }
 
 func (r *Router) updateRoutes() error {
@@ -42,7 +49,9 @@ func (r *Router) updateRoutes() error {
 			return err
 		}
 
+		// Start with the reverse proxy as the innermost handler
 		var handler http.Handler = rp
+		// Apply route-specific middleware
 		if route.AuthRequired {
 			handler = middleware.Auth(r.cfg.Auth.APIKey)(handler)
 		}

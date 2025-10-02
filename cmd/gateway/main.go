@@ -28,9 +28,9 @@ func main() {
 	}
 
 	srv := http.Server{
-		Addr : config.Server.PORT,
-		Handler: r,
-		ReadTimeout: config.Server.ReadTimeout,
+		Addr:         config.Server.PORT,
+		Handler:      r,
+		ReadTimeout:  config.Server.ReadTimeout,
 		WriteTimeout: config.Server.WriteTimeout,
 	}
 
@@ -45,7 +45,7 @@ func main() {
 	quit := make(chan os.Signal, 1)
 	signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
 
-	<- quit
+	<-quit
 	log.Println("shutting down server...")
 
 	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
@@ -54,6 +54,6 @@ func main() {
 	if err := srv.Shutdown(ctx); err != nil {
 		log.Fatalf("server shutdown failed: %v", err)
 	}
-	
+
 	log.Println("server gracefully stopped")
 }
